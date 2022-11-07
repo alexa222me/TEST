@@ -27,38 +27,19 @@ class ViewController: UIViewController {
                         "Fabulous? That's You!",
                         "When the Genious Bar Needs Help, They Call You!",
                         "You've Got The Design Skills of Jony Ive"]
-        messageLabel.text = messages[Int.random(in: 0...messages.count-1)]
-        imageView.image = UIImage(named: "image\(Int.random(in: 0...totalNumberOfImages))")
-        //        messageLabel.text = messages[messageNumber]
-        //        messageNumber += 1
-        //        if messageNumber == messages.count {
-        //            messageNumber = 0
-        //        }
         
-        // let imageName = "image" + String(imageNumber)
-//        let imageName = "image\(imageNumber)"
-//        imageView.image = UIImage (named: imageName)
-//        imageNumber = imageNumber + 1
-//        if imageNumber == 10 {
-//            imageNumber = 0
-//        }
+        var newMessage = messages[Int.random(in: 0...messages.count-1)]
+        while  messageLabel.text == newMessage {
+            newMessage = messages[Int.random(in: 0...messages.count-1)]
+        }
+        messageLabel.text = newMessage
         
-        
-            //        let awesomeMessage = "You Are Awesome!"
-            //        let greatMessage = "You Are Great!"
-            //        let bombMessage = "You Are Da Bomb!"
-            //
-            //        if messageLabel.text == awesomeMessage {
-            //            messageLabel.text = greatMessage
-            //            imageView.image = UIImage (named: "image1")
-            //        } else if messageLabel.text == greatMessage {
-            //            messageLabel.text = bombMessage
-            //            imageView.image = UIImage (named: "image2")
-            //        } else {
-            //            messageLabel.text = awesomeMessage
-            //            imageView.image = UIImage (named: "image0")
-            //        }
-        
+        var newImage = UIImage(named: "image\(Int.random(in: 0...totalNumberOfImages))")
+        while imageView.image == newImage {
+            newImage = UIImage(named: "image\(Int.random(in: 0...totalNumberOfImages))")
+        }
+        imageView.image = newImage
+
         
     }
     
