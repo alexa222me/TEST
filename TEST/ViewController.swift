@@ -37,35 +37,53 @@ class ViewController: UIViewController {
         }
     }
     
+    func nonRepeatingRandom (originalNumber: Int, upperLimit: Int) -> Int {
+        var newNumber: Int
+        repeat {
+            newNumber = Int.random(in: 0...upperLimit)
+        } while originalNumber == newNumber
+        return newNumber
+    }
+    
     @IBAction func pressButton(_ sender: UIButton) {
-       var messages = ["You Are Awesome!",
+       let messages = ["You Are Awesome!",
                         "You Are Great!",
                         "You Are Fantastic!",
                         "Fabulous? That's You!",
                         "When the Genious Bar Needs Help, They Call You!",
                         "You've Got The Design Skills of Jony Ive"]
         
-        var newMessageNumber: Int
-        repeat {
-            newMessageNumber = Int.random(in: 0...messages.count-1)
-        } while messageNumber == newMessageNumber
-        messageNumber = newMessageNumber
-        messageLabel.text = messages[messageNumber]
+        messageNumber = nonRepeatingRandom(originalNumber: messageNumber, upperLimit: messages.count-1)
+        messageLabel.text = messages [ messageNumber]
         
-        var newImageNumber: Int
-        repeat {
-            newImageNumber = Int.random(in: 0...totalNumberOfImages)
-        } while imageNumber == newImageNumber
-        imageNumber = newImageNumber
-        imageView.image = UIImage (named: "image\(imageNumber)")
+       imageNumber = nonRepeatingRandom(originalNumber: imageNumber, upperLimit: totalNumberOfImages-1)
+        imageView.image = UIImage(named: "image\(imageNumber)")
         
-        var newSoundNumber: Int
-        repeat {
-            newSoundNumber = Int.random(in: 0...totalNumberOfSounds-1)
-        } while soundNumber == newSoundNumber
-        soundNumber = newSoundNumber
-    
+        soundNumber = nonRepeatingRandom(originalNumber: soundNumber, upperLimit: totalNumberOfSounds-1)
         playSound(name: "sound\(soundNumber)")
+        
+        
+        //        var newMessageNumber: Int
+        //        repeat {
+        //            newMessageNumber = Int.random(in: 0...messages.count-1)
+        //        } while messageNumber == newMessageNumber
+        //        messageNumber = newMessageNumber
+        //        messageLabel.text = messages[messageNumber]
+        //
+        //        var newImageNumber: Int
+        //        repeat {
+        //            newImageNumber = Int.random(in: 0...totalNumberOfImages)
+        //        } while imageNumber == newImageNumber
+        //        imageNumber = newImageNumber
+        //        imageView.image = UIImage (named: "image\(imageNumber)")
+        //
+        //        var newSoundNumber: Int
+        //        repeat {
+        //            newSoundNumber = Int.random(in: 0...totalNumberOfSounds-1)
+        //        } while soundNumber == newSoundNumber
+        //        soundNumber = newSoundNumber
+        //
+        //        playSound(name: "sound\(soundNumber)")
         
     }
     
