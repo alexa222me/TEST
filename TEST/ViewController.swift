@@ -9,9 +9,10 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var playSoundSwitch: UISwitch!
     
     var imageNumber = -1
     var messageNumber = -1
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressButton(_ sender: UIButton) {
-       let messages = ["You Are Awesome!",
+        let messages = ["You Are Awesome!",
                         "You Are Great!",
                         "You Are Fantastic!",
                         "Fabulous? That's You!",
@@ -56,12 +57,21 @@ class ViewController: UIViewController {
         messageNumber = nonRepeatingRandom(originalNumber: messageNumber, upperLimit: messages.count-1)
         messageLabel.text = messages [ messageNumber]
         
-       imageNumber = nonRepeatingRandom(originalNumber: imageNumber, upperLimit: totalNumberOfImages-1)
+        imageNumber = nonRepeatingRandom(originalNumber: imageNumber, upperLimit: totalNumberOfImages-1)
         imageView.image = UIImage(named: "image\(imageNumber)")
         
         soundNumber = nonRepeatingRandom(originalNumber: soundNumber, upperLimit: totalNumberOfSounds-1)
-        playSound(name: "sound\(soundNumber)")
-        
+        if playSoundSwitch.isOn {
+            playSound(name: "sound\(soundNumber)")
+        }
+        }
+    @IBAction func playSoundToggled( sender: UISwitch) {
+    if !sender.isOn && audioPlayer != nil {
+    audioPlayer.stop()
+        }
+    }
+    
+}
         
         //        var newMessageNumber: Int
         //        repeat {
@@ -85,7 +95,5 @@ class ViewController: UIViewController {
         //
         //        playSound(name: "sound\(soundNumber)")
         
-    }
-    
-}
+
 
